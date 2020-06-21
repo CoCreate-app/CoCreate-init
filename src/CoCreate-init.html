@@ -11,8 +11,7 @@
   <!-- SortableJS -->
   <!--<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>-->
   <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/99ba925095.js"></script> 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" crossorigin="anonymous" />    
 
 <style>
   .stage{
@@ -82,7 +81,7 @@ span {
                         <form data-collection="module_activity" class="Sortable" data-group_name="task-itemse" id="testForm">
                           <div id="task-item" style="" class="template">
                             <div style="display:inline-block;width: calc(100% - 20px);">
-                            <input class="floating-label_field" data-module_activity_id="5d8c79e7e4be424681b5e48d" name="taskname"  placeholder="Task Name"></div>
+                            <input class="floating-label" data-module_activity_id="5d8c79e7e4be424681b5e48d" name="taskname"  placeholder="Task Name"></div>
                             <span style="float:right;"><a data-clone_id="task-item" class="deleteBtn noDrag"><i class="fas fa-times"></i></a></span>
                           </div>
                         </form>
@@ -120,14 +119,14 @@ span {
 
 
  
-  <script src="https://server.cocreate.app/CoCreateJS/src/socket.io.js"></script>
+  <script src="https://server.cocreate.app/CoCreateJS/src/CoCreate-socket.js"></script>
   <script src="https://server.cocreate.app/CoCreate-components/CoCreate-logic/CoCreate-logic.js"></script>
   <script src="https://server.cocreate.app/CoCreateJS/src/CoCreate-utils.js"></script>
   <script src="https://server.cocreate.app/CoCreateJS/src/CoCreate.js"></script>
 
   <script src="https://server.cocreate.app/CoCreate-components/CoCreate-y/y-client/dist/CoCreate-crdt.js"></script>
 
-  <script src="https://server.cocreate.app/CoCreate-components/CoCreate-documet_id/CoCreate-document_id.js"></script>
+  <script src="https://server.cocreate.app/CoCreate-components/CoCreate-document_id/CoCreate-document_id.js"></script>
   <script src="https://server.cocreate.app/CoCreate-components/CoCreate-form/CoCreate-form.js"></script>
   <script src="https://server.cocreate.app/CoCreate-components/CoCreate-filter/CoCreate-filter.js"></script> 
   <script src="https://server.cocreate.app/CoCreate-components/CoCreate-templating/CoCreate-templating.js"></script>
@@ -139,7 +138,7 @@ span {
   <script src="https://server.cocreate.app/CoCreate-components/CoCreate-htmltags/CoCreate-htmltags.js"></script>
   <script src="https://server.cocreate.app/CoCreate-components/CoCreate-input/CoCreate-input.js"></script>
 
-  <script src="https://server.cocreate.app/CoCreate-components/CoCreate-cursors/CoCreate-cursors.js"></script>
+  <!--<script src="https://server.cocreate.app/CoCreate-components/CoCreate-cursors/CoCreate-cursors.js"></script>-->
   <script src="https://server.cocreate.app/CoCreate-components/CoCreate-text/CoCreate-text.js"></script>
 
   <script src="https://server.cocreate.app/CoCreate-components/CoCreate-init/CoCreate-init.js"></script>
@@ -154,5 +153,10 @@ span {
 </html>
 
 <script  type="text/javascript">
-  // CoCreateObserver.register('.floating-label_field',initFloatLabelEle);
+  // CoCreateInit.register_old('.floating-label',initFloatLabelEle);
+   /*
+   CoCreateInit.register('CoCreateFloat', window, initFloatLabelEle, '.floating-label');
+   CoCreateInit.register('CoCreateFloat123', window, initFloatLabelEle, '.floating-label');
+   */
+   
 </script>
