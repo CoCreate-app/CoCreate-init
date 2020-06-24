@@ -1,21 +1,31 @@
 const CoCreateInit = {
-	modules: {},
+	modules: new Map(),
 	observer: null,
 
 	/**
-	* key: module name
-	* instance: module instance (ex, CoCreateInput or window)
-	* initFunc: function instance for init
-	* selector: selector
-	*/
-	register: function (key, instance, initFunc, selector = '') {
-		if (this.modules[key]) {
+	 * register a new watch for an element 
+	 * @param {function} initFunc the call function that is called when a mutation happen in selector
+	 * @param {string} selector a css selector to watch for change
+	 * @param {object} [instance=window] optional module instance (ex, CoCreateInput or window)
+	 */
+	register: function (initFunc, selector = '', instance = window) {
+		if (this.modules.has(initFunc))
 			return;
-		}
-		this.modules[key] = {
+
+		this.modules.set(initFunc, {
 			func: initFunc,
 			selector: selector,
 			instance: instance
+		})
+	},
+
+	/**
+	 * unregister a watch 
+	 * @param {function} initFunc the callback function given to this.register to start a watch
+	 */
+	unregister: function (initFunc) {
+		if (this.modules.has(initFunc)) {
+			this.modules.delete(initFunc)
 		}
 	},
 
