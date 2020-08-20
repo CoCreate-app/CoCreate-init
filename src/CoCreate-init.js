@@ -50,7 +50,7 @@ const CoCreateInit = {
 	},
 	
 	runInit: function(container) {
-		console.log(this.newModules, container)
+		// console.log(this.newModules, container)
 		for (let [key, value] of Object.entries(this.newModules)) {
 			value['func'].call(value['instance'], container);
 		}
@@ -58,29 +58,57 @@ const CoCreateInit = {
 	
 	mutationLogic: function(mutations) {
 		const self = this;
-		console.log('mutations event.....');
+		// console.log('mutations event.....');
 		mutations.forEach(function(mutation){
-			if (mutation.type == "childList" && mutation.addedNodes.length == 1) {
-				const addedNode = mutation.addedNodes.item(0);
+			// if (mutation.type == "childList" && mutation.addedNodes.length == 1) {
+			// 	const addedNode = mutation.addedNodes.item(0);
+			// 	if (!self.modules) {
+			// 		return;
+			// 	}
+				
+			//     if (!addedNode.querySelectorAll || !addedNode.getAttribute) { 
+			//       return;
+			//     }
+				
+			// 	for (let [key, value] of Object.entries(self.modules)) {
+			// 		value['func'].call(value['instance'], addedNode);
+			// 		// let items = addedNode.querySelectorAll(value['selector']);
+			// 		// items.forEach(el => {
+			// 		// 	console.log('init element with observer', key);
+			// 		// 	value['func'].call(value['instance'], el);
+			// 		// })
+			// 	}
+			// }
+			
+			if (mutation.type == "childList" && mutation.addedNodes.length > 0) {
 				if (!self.modules) {
-					return;
+					return ;
 				}
-				
-		    if (!addedNode.querySelectorAll || !addedNode.getAttribute) { 
-		      return;
-		    }
-				
-				for (let [key, value] of Object.entries(self.modules)) {
-					value['func'].call(value['instance'], addedNode);
-					// let items = addedNode.querySelectorAll(value['selector']);
-					// items.forEach(el => {
-					// 	console.log('init element with observer', key);
-					// 	value['func'].call(value['instance'], el);
-					// })
-				}
+				mutation.addedNodes.forEach((node) => {
+				    if (!node.querySelectorAll || !node.getAttribute) { 
+				      return;
+				    }
+				    
+				    for (let [key, value] of Object.entries(self.modules)) {
+				    	value['func'].call(value['instance'], node);
+				    }
+					
+				})
 			}
 		});
 	},
+	
+	setInitialized: function(element) {
+		element.initialized = true;
+	},
+	
+	getInitialized: function(element) {
+		if (!element.initialized) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
 
 CoCreateInit.init();
